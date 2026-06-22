@@ -159,3 +159,46 @@ After completing this lab, you will:
 ✅ Return structured JSON and meaningful HTTP responses  
 
 This lays the foundation for full CRUD APIs in the next module.
+
+---
+
+## Project Structure
+
+```
+.
+├── app.py            # Flask application with the three GET routes
+├── data.py           # Mock product list used by the API
+├── tests/
+│   └── test_app.py   # Pytest suite covering all routes
+├── pytest.ini        # Pytest configuration
+├── Pipfile           # Pipenv dependencies
+└── README.md
+```
+
+## Running the App
+
+```bash
+pipenv install
+pipenv shell
+python app.py
+```
+
+The server starts on `http://localhost:5000`.
+
+### Example Requests
+
+| Endpoint | Description | Sample response |
+| --- | --- | --- |
+| `GET /` | Welcome message | `{"message": "Welcome to the Product Catalog API"}` |
+| `GET /products` | All products | `[{"id": 1, ...}, ...]` |
+| `GET /products?category=books` | Products in `books` category | `[{"id": 2, "name": "Book", ...}]` |
+| `GET /products/2` | Product with `id=2` | `{"id": 2, "name": "Book", ...}` |
+| `GET /products/99` | Unknown ID | `404 {"error": "Product not found"}` |
+
+## Running the Tests
+
+```bash
+python -m pytest -v
+```
+
+All five tests in [tests/test_app.py](tests/test_app.py) should pass.
